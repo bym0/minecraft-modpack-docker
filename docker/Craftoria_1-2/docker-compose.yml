@@ -1,0 +1,18 @@
+services:
+  mc:
+    image: ghcr.io/itzg/minecraft-server
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+    ports:
+      - 25566:25565
+    environment:
+      EULA: "TRUE"
+      TYPE: AUTO_CURSEFORGE
+      CF_API_KEY: ${CF_API_KEY}
+      CF_SLUG: craftoria
+      CF_EXCLUDE_MODS: "737481 986380" # Exclude: Client Side Mods
+      INIT_MEMORY: 1G
+      MAX_MEMORY: 8G
+    volumes:
+      - ./data:/data
